@@ -1,4 +1,4 @@
-# 【2022春】週間アニメ感想6月5日版（9,10話）【BIRDIE WING -Golf Girl's Story-、おにぱん！、CUE!、ダンス・ダンス・ダンスール】
+# 【2022春】週間アニメ感想6月12日版（10,11話）【BIRDIE WING -Golf Girl's Story-、CUE!、このヒーラー、めんどくさい、史上最強の大魔王、村人Aに転生する】
 
 [←前回](http://www.ukitouchtypist.org/2022/06/07/post-1450/) 次回→
 
