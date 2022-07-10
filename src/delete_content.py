@@ -6,7 +6,14 @@ def main() :
     new_rows = []
     with open("anime_weekly.md", mode="r", encoding="utf_8") as f :
         article_rows = [l.strip() for l in f.readlines()]
-        include_pattern = re.compile(r"(^評価:\s[A-F]{,3}\s→(\s[A-F]{,3})?$|^評価:(\s[A-F]{,3})?$|^#{,3}\s[A-F]{,3}|^\[←前回\]|\)\s次回→$|^次回→$|^\*\*\*$)")
+        include_pattern = re.compile(
+            r"^評価:\s[A-F]{,3}\s→(\s[A-F]{,3})?$|" +
+            r"^評価:(\s[A-F]{,3})?$|" +
+            r"^#|" +
+            r"^\[←前回\]|" +
+            r"\)\s次回→$|" +
+            r"^次回→$|" +
+            r"^\*\*\*$")
         end = "## 切った"
         end_index = article_rows.index(end)
         for row in article_rows :
