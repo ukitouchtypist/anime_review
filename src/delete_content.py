@@ -1,6 +1,5 @@
 # coding: utf-8
 import re
-from tkinter import E
 
 def main() :
     new_rows = []
