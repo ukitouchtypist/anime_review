@@ -46,7 +46,7 @@ def ranked_anime_extract(start_rank, stop_rank) :
 
 
 def extract_title(row) :
-    patterns = [re.compile(r"^###\s(.+?)\s第\d{,2}[話幕夜]"), re.compile(r"^###\s(.+?)\sEPISODE\s\d{,2}"), re.compile(r"^###\s(.+?)\sChapter\s\d{,2}"), re.compile(r"###\s(.+?)\s\d{,2}羽目")]
+    patterns = [re.compile(r"^###\s(.+?)\s第\d{,2}[話幕夜]"), re.compile(r"^###\s(.+?)\sEPISODE\s\d{,2}"), re.compile(r"^###\s(.+?)\sChapter\s\d{,2}"), re.compile(r"###\s(.+?)\s\d{,2}羽目"), re.compile(r"###\s(.+?)\s終わり")]
     for pattern in patterns :
         m = pattern.match(row)
         if m :
