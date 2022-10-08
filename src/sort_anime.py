@@ -1,8 +1,8 @@
 # coding: utf-8
 import re
+import argparse
 
 def main() :
-        anime_titles = []
         any_rank_animes = []
         ranks = ["AAA", "AA", "A", "B", "C", "D", "E", "F"]
         any_rank_animes.append(list(dict.fromkeys(ranked_anime_extract("AAA", "AA"))))
@@ -27,8 +27,14 @@ def print_ranked_animes(ranked_animes) :
 def print_rank_and_count(ranked_animes, rank) :
     print("## {rank}({count}作品)".format(rank=rank, count=str(len(ranked_animes))))
 
+def fetch_file_name_from_args() :
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-i", type=str, default="anime_weekly.md")
+    return parser.parse_args().i
+
 def ranked_anime_extract(start_rank, stop_rank) :
-    with open("anime_weekly.md", mode="r", encoding="utf_8") as f :
+    file_name = fetch_file_name_from_args()
+    with open(file_name, mode="r", encoding="utf_8") as f :
         article_rows = [l.strip() for l in f.readlines()]
         ranked_anime_titles = []
         article_end_pattern = re.compile(r"^## 切った$")
@@ -46,7 +52,16 @@ def ranked_anime_extract(start_rank, stop_rank) :
 
 
 def extract_title(row) :
-    patterns = [re.compile(r"^###\s(.+?)\s第\d{,2}[話幕夜]"), re.compile(r"^###\s(.+?)\sEPISODE\s\d{,2}"), re.compile(r"^###\s(.+?)\sChapter\s\d{,2}"), re.compile(r"###\s(.+?)\s\d{,2}羽目"), re.compile(r"###\s(.+?)\s終わり")]
+    patterns = [
+        re.compile(r"^###\s(.+?)\s第\d{,2}[話幕夜]"),
+        re.compile(r"^###\s(.+?)\s第[壱一弐二参三肆四伍五陸六漆七捌八玖九拾十陌百阡千萬万億兆京]{,2}話"),
+        re.compile(r"^###\s(.+?)\sEPISODE\s\d{,2}"),
+        re.compile(r"^###\s(.+?)\sMISSION:\d{,2}"),
+        re.compile(r"^###\s(.+?)\sChapter\s\d{,2}"),
+        re.compile(r"###\s(.+?)\s\d{,2}羽目"),
+        re.compile(r"###\s(.+?)\s【すてっぷ[①-⑫]】"),
+        re.compile(r"^###\s(.+)"),
+    ]
     for pattern in patterns :
         m = pattern.match(row)
         if m :
