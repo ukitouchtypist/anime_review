@@ -55,7 +55,7 @@ def extract_title(row) :
     patterns = [
         re.compile(r"^###\s(.+?)\s第\d{,2}[話幕夜]"),
         re.compile(r"^###\s(.+?)\s第[壱一弐二参三肆四伍五陸六漆七捌八玖九拾十陌百阡千萬万億兆京]{,2}話"),
-        re.compile(r"^###\s(.+?)\sEPISODE\s\d{,2}"),
+        re.compile(r"^###\s(.+?)\sEPISODE[\\.\s]\d{,2}"),
         re.compile(r"^###\s(.+?)\sMISSION:\d{,2}"),
         re.compile(r"^###\s(.+?)\sChapter\s\d{,2}"),
         re.compile(r"###\s(.+?)\s\d{,2}羽目"),
