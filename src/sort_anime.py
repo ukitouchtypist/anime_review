@@ -58,6 +58,7 @@ def extract_title(row) :
         re.compile(r"^###\s(.+?)\sEPISODE[\\.\s]\d{,2}"),
         re.compile(r"^###\s(.+?)\sMISSION:\d{,2}"),
         re.compile(r"^###\s(.+?)\sChapter[\\.\s]\d{,2}"),
+        re.compile(r"^###\s(.+?)\schapter[\s]\d{,2}"),
         re.compile(r"###\s(.+?)\s\d{,2}羽目"),
         re.compile(r"###\s(.+?)\s【すてっぷ[①-⑫]】"),
         re.compile(r"^###\s(.+)"),
