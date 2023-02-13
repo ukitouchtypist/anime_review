@@ -61,6 +61,7 @@ def extract_title(row) :
         re.compile(r"^###\s(.+?)\schapter[\s]\d{,2}"),
         re.compile(r"###\s(.+?)\s\d{,2}羽目"),
         re.compile(r"###\s(.+?)\s【すてっぷ[①-⑫]】"),
+        re.compile(r"###\s(.+?)\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\."),
         re.compile(r"^###\s(.+)"),
     ]
     for pattern in patterns :
