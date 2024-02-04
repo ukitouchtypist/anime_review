@@ -5,6 +5,13 @@ import argparse
 def main() :
         any_rank_animes = []
         ranks = ["AAA", "AA", "A", "B", "C", "D", "E", "F"]
+        # any_rank_animes は以下のような二次元配列となっている
+        # [
+        #   [AAAランクアニメ1, AAAランクアニメ2, AAAランクアニメ3, AAAランクアニメ4],
+        #   [AAランクアニメ1, AAランクアニメ2, AAランクアニメ3],
+        #   ...
+        #   [Fランクアニメ1, Fランクアニメ2]
+        # ]
         any_rank_animes.append(list(dict.fromkeys(ranked_anime_extract("AAA", "AA"))))
         any_rank_animes.append(list(dict.fromkeys(ranked_anime_extract("AA", "A"))))
         any_rank_animes.append(list(dict.fromkeys(ranked_anime_extract("A", "B"))))
@@ -51,9 +58,14 @@ def ranked_anime_extract(start_rank, stop_rank) :
         return ranked_anime_titles
 
 
+# 以下の形式になっている行から、アニメのタイトルのみを抜き出すメソッド
+# ### {アニメタイトル} 第12話「{サブタイトル}」
+# patterns というlistは、例えば、『### ゆびさきと恋々 Sign.3 「サブタイトル」』という行があった時、「ゆびさきと恋々」だけを抜き出すために「### 」から始まり、「Sign.X」というのがあればそこまでの文字列を取得するための正規表現
+# patterns というlistの終端に格納されている^###\s(.+)という正規表現は、他にアニメに先駆けて放送が終わった時に、「第◯話」以降を削除してアニメタイトルのみにしているので、それをアニメランクに含めるための正規表現
 def extract_title(row) :
     patterns = [
         re.compile(r"^###\s(.+?)\s第\d{,2}[話幕夜場]"),
+        re.compile(r"^###\s(.+?)\sだい\d{,2}わ"),
         re.compile(r"^###\s(.+?)\s第[壱一弐二参三肆四伍五陸六漆七捌八玖九拾十陌百阡千萬万億兆京]{,2}[話幕夜場]"),
         re.compile(r"^###\s(.+?)\s\d{,2}缶め"),
         re.compile(r"^###\s(.+?)\sEPISODE[\\.\s]\d{,2}"),
@@ -66,6 +78,7 @@ def extract_title(row) :
         re.compile(r"^###\s(.+?)\schapter[\s]\d{,2}"),
         re.compile(r"^###\s(.+?)\sLayer[\s]\d{,2}"),
         re.compile(r"^###\s(.+?)\sRd[\\.\s]\d{,2}"),
+        re.compile(r"^###\s(.+?)\sSign[\\.\s]\d{,2}"),
         re.compile(r"###\s(.+?)\s\d{,2}羽目"),
         re.compile(r"###\s(.+?)\s【すてっぷ[①-⑫]】"),
         re.compile(r"###\s(.+?)\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\."),
